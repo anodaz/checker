@@ -53,6 +53,7 @@ box-shadow:2px 2px 2px gray,
 	<script type="application/javascript">
     function hajar(){
         var url = document.getElementById('mailist').value.split('\n');
+        var link="http://valide.anodaz.com/api.php";
         var current = 0;
         var total = url.length;
         var newcsrf=false;
@@ -66,13 +67,13 @@ box-shadow:2px 2px 2px gray,
 					newcsrf=false;
 					document.getElementById("load").innerHTML='<h5 style="color: #FFF;font-weight: bold;"><b>New CSRF Checking .... ' + emailnya + '</b></h5><div class="progress progress-striped active"><div class="progress-bar" style="width: 50%"></div></div>';//'<img src="ajax-loader.gif" />';
                 var http = new XMLHttpRequest();
-                http.open("POST", "http://life99.ca/anodaz/test.php", true);
+                http.open("POST", link, true);
                 http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
                 http.send("email=" + url[current]+"&csrf=new");
             }else{
             	document.getElementById("load").innerHTML='<h5 style="color: #FFF;font-weight: bold;"><b>Checking .... ' + emailnya + '</b></h5><div class="progress progress-striped active"><div class="progress-bar" style="width: 50%"></div></div>';//'<img src="ajax-loader.gif" />';
                 var http = new XMLHttpRequest();
-                http.open("POST", "http://life99.ca/anodaz/test.php", true);
+                http.open("POST", link, true);
                 http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
                 http.send("email=" + url[current]);
             }
@@ -81,8 +82,9 @@ box-shadow:2px 2px 2px gray,
                 http.onreadystatechange=function() {
                     if (http.readyState == 4) {
                         output = JSON.parse(http.responseText);
-                        alert(output["csrf"]);
-						if(output["accountExist"] == 'null'){
+                        
+						if(output["accountExist"] == null){
+						   // alert(output["csrf"]);
 							newcsrf=true;
 							current--;
 							
