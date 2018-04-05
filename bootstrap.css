@@ -1090,7 +1090,8 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #839496;
- background: url(https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQTtp1XBQPzBLJMrPpBTn0ZM0OEVXW6pxB4CVx5tMTApQedcSjw);
+  background-position: center;
+  background-image: url(background.jpg);
 }
 input,
 button,
