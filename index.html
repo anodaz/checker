@@ -2,7 +2,7 @@
 <html lang="en"><head><link rel="shortcut icon" href="pp2.png">
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-    <title>0 Paypal Valid Mail Checker</title>
+    <title>Paypal Checker By Hatab Aodaz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="bootstrap.css" media="screen">
@@ -244,7 +244,7 @@ p {
     function hajar(){
         document.getElementById('hajarbro').disabled=true;
         var url = document.getElementById('mailist').value.split('\n');
-        var link="http://api.anodaz.com/api.php";
+        var link="api.php";
         var current = 0;
         var total = url.length;
         var newcsrf=false;
@@ -276,6 +276,7 @@ var x = setInterval(function() {
     }
     // If the count down is over, write some text 
 }, 1000);
+document.getElementById("loadd").innerHTML='<div id="fountainG"><div id="fountainG_1" class="fountainG"></div><div id="fountainG_2" class="fountainG"></div><div id="fountainG_3" class="fountainG"></div><div id="fountainG_4" class="fountainG"></div><div id="fountainG_5" class="fountainG"></div><div id="fountainG_6" class="fountainG"></div><div id="fountainG_7" class="fountainG"></div><div id="fountainG_8" class="fountainG"></div></div>';
         ajax();
 
         function ajax(){
@@ -283,14 +284,14 @@ var x = setInterval(function() {
 				var emailnya = url[current];
 				if (newcsrf){
 					newcsrf=false;
-					document.getElementById("load").innerHTML='<h5 style="color: #FFF;font-weight: bold;"><b>New CSRF ['+current+'/'+total+']' + emailnya + '</b></h5><div id="fountainG"><div id="fountainG_1" class="fountainG"></div><div id="fountainG_2" class="fountainG"></div><div id="fountainG_3" class="fountainG"></div><div id="fountainG_4" class="fountainG"></div><div id="fountainG_5" class="fountainG"></div><div id="fountainG_6" class="fountainG"></div><div id="fountainG_7" class="fountainG"></div><div id="fountainG_8" class="fountainG"></div></div>';//'<img src="ajax-loader.gif" />';
+					document.getElementById("load").innerHTML='<h5 style="color: #FFF;font-weight: bold;"><b>New CSRF ['+current+'/'+total+']' + emailnya + '</b></h5>';//'<img src="ajax-loader.gif" />';
                     var http = new XMLHttpRequest();
                     http.open("POST", link, true);
                     http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
                     http.send("email=" + url[current]+"&csrf=new");
                 }
                 else{
-            	   document.getElementById("load").innerHTML='<h5 style="color: #FFF;font-weight: bold;"><b>['+current+'/'+total+']' + emailnya + '</b></h5><div id="fountainG"><div id="fountainG_1" class="fountainG"></div><div id="fountainG_2" class="fountainG"></div><div id="fountainG_3" class="fountainG"></div><div id="fountainG_4" class="fountainG"></div><div id="fountainG_5" class="fountainG"></div><div id="fountainG_6" class="fountainG"></div><div id="fountainG_7" class="fountainG"></div><div id="fountainG_8" class="fountainG"></div></div>';//'<img src="ajax-loader.gif" />';
+            	   document.getElementById("load").innerHTML='<h5 style="color: #FFF;font-weight: bold;"><b>['+current+'/'+total+']' + emailnya + '</b></h5>';//'<img src="ajax-loader.gif" />';
                     var http = new XMLHttpRequest();
                     http.open("POST", link, true);
                     http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
@@ -345,6 +346,7 @@ var x = setInterval(function() {
 }
 //launch it.
 alertify.myAlert('<div style="text-align: center;"><h5 style="color: #000;font-weight: bold; text-align: center;"><b>['+current+'/'+total+'] completed :) </b> </h5><br> <b style="color: lime;font-weight: bold;text-align: center;">VALID-EMAILS : '+validtitle+' <b><br> <b style=" text-align: center;color: red;font-weight: bold;">INVALID-EMAILS : '+invalidtitle+'<b></div>');
+document.getElementById("loadd").innerHTML="";
                 document.getElementById("load").innerHTML='<h5 style="color: #FFF;font-weight: bold;"><b>['+current+'/'+total+'] completed :) </b></h5>';
             }
         }
@@ -370,6 +372,9 @@ alertify.myAlert('<div style="text-align: center;"><h5 style="color: #000;font-w
 	<div class="form-group"><center>
         <p id="demo"></p>
 <div id="load">
+
+</div>
+<div id="loadd">
 
 </div>
 	<div id="result"></div>
