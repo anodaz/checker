@@ -299,13 +299,13 @@ document.getElementById("loadd").innerHTML='<div id="fountainG"><div id="fountai
                         
 						if(output["status"] == 'True')
 						{
-                            alertify.success('VALID EMAIL : ' +output["email"]);
+                            alertify.success(output["email"]);
                             validtitle++;
                              document.getElementById("validtitle").innerHTML=validtitle+" VALID-EMAILS";
 							$('#valid').append(output["email"] + "\n");
 							
 						}else{
-                            alertify.error('INVALID EMAIL : ' +output["email"]);
+                            alertify.error(output["email"]);
 							invalidtitle++;
                              document.getElementById("invalidtitle").innerHTML=invalidtitle+" INVALID-EMAILS";
 							$('#die').append(output["email"] + "\n");
