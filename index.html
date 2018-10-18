@@ -297,7 +297,7 @@ document.getElementById("loadd").innerHTML='<div id="fountainG"><div id="fountai
                     if (http.readyState == 4) {
                         output = JSON.parse(http.responseText);
                         
-						if(output["status"])
+						if(output["status"] == 'True')
 						{
                             alertify.success('VALID EMAIL : ' +output["email"]);
                             validtitle++;
